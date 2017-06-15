@@ -55,17 +55,21 @@
 
       searchTerm = searchTerm.trim().toLowerCase();
 
-      $http({url: ("https://davids-restaurant.herokuapp.com/menu_items.json")})
-      .then(function (response){
+      if (searchTerm ==''){
+        foundItems = [];
+      }else{
+        $http({url: ("https://davids-restaurant.herokuapp.com/menu_items.json")})
+        .then(function (response){
 
-          for ( var i = 0; i < response.data.menu_items.length - 1 ; i++){
-            if (response.data.menu_items[i].description.toLowerCase().indexOf(searchTerm) !== -1){
-              foundItems.push( response.data.menu_items[i]);
+            for ( var i = 0; i < response.data.menu_items.length - 1 ; i++){
+              if (response.data.menu_items[i].description.toLowerCase().indexOf(searchTerm) !== -1){
+                foundItems.push( response.data.menu_items[i]);
+              }
             }
-          }
-      }).catch(function (error) {
-        console.log("Error while retrieving the data.");
-      });
+        }).catch(function (error) {
+          console.log("Error while retrieving the data.");
+        });
+      }
       return foundItems;
     };
   }
