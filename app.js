@@ -59,7 +59,7 @@
       .then(function (response){
 
           for ( var i = 0; i < response.data.menu_items.length - 1 ; i++){
-            if (response.data.menu_items[i].name.toLowerCase().indexOf(searchTerm) !== -1){
+            if (response.data.menu_items[i].description.toLowerCase().indexOf(searchTerm) !== -1){
               foundItems.push( response.data.menu_items[i]);
             }
           }
